@@ -7,7 +7,7 @@ export default class WebSocketManager {
 	inited = false;
 
 	constructor(url = '', handler = noop) {
-		this.socket = new WebSocket(url.replace('http', 'wss'), 'binary');
+		this.socket = new WebSocket(url.replace('http', 'ws'), 'binary');
 		this.socket.binaryType = 'arraybuffer';
 		this.socket.onopen = this.onWebsocketOpen;
 		this.socket.onmessage = async data => {
