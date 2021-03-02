@@ -5,6 +5,8 @@
 	import Menu from './../components/menu/menu.svelte';
 	import UserDialogs from '../components/user-dialogs.svelte';
 	import { topBar } from '../stores/topBar';
+	import { pluginManager } from '../stores/pluginManager';
+import PluginManager from '../components/plugin-manager/plugin-manager.svelte';
 </script>
 
 <div class="chat-page">
@@ -15,6 +17,9 @@
 	<div class="right">
 		{#if $topBar}
 			<TopBar />
+		{/if}
+		{#if $pluginManager}
+			<PluginManager />
 		{/if}
 		<ChatMain />
 		<MessageInput />

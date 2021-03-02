@@ -7,7 +7,9 @@
 	import Archive from 'images/archive.svg';
 	import User from 'images/user.svg';
 	import Group from 'images/group.svg';
+	import Plugin from 'images/plugin.svg';
 	import Search from 'inline/search.svg';
+	import { pluginManager } from '../../stores/pluginManager';
 
 	let overlay = true;
 	let menuIcon = 'burger';
@@ -23,6 +25,10 @@
 		menuIcon = 'burger';
 	};
 
+	const onPluginClick = () => {
+		pluginManager.update(old => !old);
+	}
+
 	const block = 'menu-list';
 	const items = [
 		{ img: Group, text: 'New group', className: `${block}__new-group` },
@@ -31,6 +37,7 @@
 		{ img: Savedmessages, text: 'Saved', className: `${block}__saved` },
 		{ img: Settings, text: 'Settings', className: `${block}__settings` },
 		{ img: Help, text: 'Help', className: `${block}__help` },
+		{ img: Plugin, text: 'Extensions', className: `${block}__help`, onClick: onPluginClick},
 	];
 
 	let active = false;
@@ -57,8 +64,8 @@
 		</div>
 		{#if active}
 			<Popup {popupHandler} class="menu-list">
-				{#each items as { img, text, className }}
-					<PopupItem class="{className}">
+				{#each items as { img, text, className, onClick }}
+					<PopupItem class="{className}" onClick={onClick}>
 						<img slot="img" src="{img}" alt="" />
 						<div slot="text" class="menu-list__text">{text}</div>
 					</PopupItem>

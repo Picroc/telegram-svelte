@@ -4,7 +4,7 @@
 	export let checked = false;
 </script>
 
-<input {checked} on:change type="checkbox" id="{name}" {name} />
+<input {checked} on:change on:click type="checkbox" id="{name}" {name} />
 {#if label}
 	<label for="{name}">{label}</label>
 {/if}
